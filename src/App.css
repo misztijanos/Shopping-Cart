@@ -163,6 +163,7 @@ header a:hover {
 }
 
 .cart-item img {
+  width: 100px;
   margin-right: 8px;
   border-radius: 8px;
 }

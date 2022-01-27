@@ -1,17 +1,25 @@
-import React from 'react';
-import Header from './components/Header';
-import products from './products';
-import './App.css';
+import React from 'react'
+import Header from './components/Header'
+import Product from './components/Product'
+import products from './products'
+import './App.css'
+import { CartProvider } from './contexts/use-cart'
 
 export default function App() {
   return (
-    <div className="app">
-      {/* header */}
-      <Header />
+    <CartProvider>
+      <div className="app">
+        {/* header */}
+        <Header />
 
-      <main>
-        <div className="products-list">{/* show products here */}</div>
-      </main>
-    </div>
-  );
+        <main>
+          <div className="products-list">
+            {products.map((product) => (
+              <Product product={product} key={product.sku} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </CartProvider>
+  )
 }
