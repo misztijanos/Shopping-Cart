@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import CartIcon from '../supermarket.svg'
 import useOnClickOutside from 'use-onclickoutside'
 
-import { useCart } from '../contexts/use-cart'
 import Cart from './Cart'
-export default function Header() {
-  const { cart } = useCart()
 
+export default function Header() {
   const [isOpen, setIsOpen] = useState(null)
+
+  const cart = useSelector((state) => state.cart)
 
   const modalRef = useRef(null)
   useOnClickOutside(modalRef, () => setIsOpen(false))
@@ -33,7 +34,7 @@ export default function Header() {
             ref={modalRef}
             style={{ display: isOpen ? 'block' : 'none' }}
           >
-            <Cart/>
+            <Cart />
           </div>
         </div>
       </div>

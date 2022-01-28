@@ -1,10 +1,17 @@
 import React from 'react'
-
-import { useCart } from '../contexts/use-cart'
+import { useSelector, useDispatch } from 'react-redux'
+//import { useCart } from '../contexts/use-cart'
 import products from '../products'
 
 export default function Cart() {
-  const { itemCount, addItem, removeItem, totalPrice } = useCart()
+  const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  const totalPrice = cart.reduce(
+    (partialSum, p) => partialSum + Number(p.price),
+    0
+  )
+  const itemCount = (sku) => cart.filter((p) => p.sku === sku).length
+
   return (
     <div className="cart">
       {products.map((product) =>
@@ -14,9 +21,21 @@ export default function Cart() {
             <div>
               <h3>{product.name}</h3>
               <div className="cart-buttons">
-                <button onClick={() => removeItem(product.sku)}>-</button>
+                <button
+                  onClick={() =>
+                    dispatch({ type: 'REMOVE', payload: product.sku })
+                  }
+                >
+                  -
+                </button>
                 <button>{itemCount(product.sku)}</button>
-                <button onClick={() => addItem(product.sku)}>+</button>
+                <button
+                  onClick={() =>
+                    dispatch({ type: 'ADD', payload: product.sku })
+                  }
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>

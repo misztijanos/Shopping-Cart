@@ -3,11 +3,12 @@ import Header from './components/Header'
 import Product from './components/Product'
 import products from './products'
 import './App.css'
-import { CartProvider } from './contexts/use-cart'
-
+//import { CartProvider } from './contexts/use-cart'
+import store from './redux/store'
+import { Provider } from 'react-redux'
 export default function App() {
   return (
-    <CartProvider>
+    <Provider store={store}>
       <div className="app">
         {/* header */}
         <Header />
@@ -20,6 +21,6 @@ export default function App() {
           </div>
         </main>
       </div>
-    </CartProvider>
+    </Provider>
   )
 }
