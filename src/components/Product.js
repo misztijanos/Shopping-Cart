@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { addItem, removeItem } from '../redux/action-creators'
 
 //import { useCart } from '../contexts/use-cart'
 
@@ -17,16 +18,14 @@ export default function Product({ product }) {
       <div className="product-buttons">
         <button
           className="remove"
-          onClick={() => {
-            dispatch({ type: 'REMOVE', payload: product.sku })
-          }}
+          onClick={() => dispatch(removeItem(product.sku))}
         >
           Remove
         </button>
         <button
           className="add"
           onClick={() => {
-            dispatch({ type: 'ADD', payload: product.sku })
+            dispatch(addItem(product.sku))
           }}
         >
           Add to Cart({cart.filter((p) => p.sku === product.sku).length})
