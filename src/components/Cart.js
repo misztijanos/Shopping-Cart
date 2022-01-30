@@ -1,7 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 //import { useCart } from '../contexts/use-cart'
 import products from '../products'
+
+import { addItem, removeItem } from '../redux/reducer'
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart)
@@ -21,19 +24,11 @@ export default function Cart() {
             <div>
               <h3>{product.name}</h3>
               <div className="cart-buttons">
-                <button
-                  onClick={() =>
-                    dispatch({ type: 'REMOVE', payload: product.sku })
-                  }
-                >
+                <button onClick={() => dispatch(removeItem(product.sku))}>
                   -
                 </button>
                 <button>{itemCount(product.sku)}</button>
-                <button
-                  onClick={() =>
-                    dispatch({ type: 'ADD', payload: product.sku })
-                  }
-                >
+                <button onClick={() => dispatch(addItem(product.sku))}>
                   +
                 </button>
               </div>

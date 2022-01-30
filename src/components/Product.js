@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addItem, removeItem } from '../redux/action-creators'
+import { addItem, removeItem } from '../redux/reducer'
 
 //import { useCart } from '../contexts/use-cart'
 

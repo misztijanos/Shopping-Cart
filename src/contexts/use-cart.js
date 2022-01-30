@@ -1,3 +1,7 @@
+// this file is only used in the version with Context (roll back to "finished with context" commit)
+
+// this version uses Redux Toolkit, just leaving this file in to show the code
+
 import { createContext, useContext, useReducer } from 'react'
 import products from '../products'
 const CartContext = createContext()
